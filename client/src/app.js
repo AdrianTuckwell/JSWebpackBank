@@ -14,7 +14,7 @@ window.onload = function() {
 
 
   console.log("new bank", bank);
-
+  // TOTAL ------------------------------------------------------------------------
   var totalDisplay = document.getElementById('total');
   totalDisplay.innerText = "Total: " + bank.totalCash();
 
@@ -22,10 +22,38 @@ window.onload = function() {
 
   for (account of bank.accounts){
     var accountListItem = document.createElement('li');
-    accountListItem.innerText = account.owner + ": £" +account.amount;
+    accountListItem.innerText = account.owner + ": £" + account.amount.toFixed(2);
     accountList.appendChild(accountListItem);
-
   }
+
+  //BUSINESS ----------------------------------------------------------------------
+  var businessTotalDisplay = document.getElementById('business-total');
+  businessTotalDisplay.innerText = "Business Total: " + bank.totalCash('business').toFixed(2);
+
+
+  var businessDisplay = document.getElementById('business-accounts');
+  for (account of bank.accounts){
+    console.log(account.type);
+    if (account.type === 'business'){
+      var accountListItem = document.createElement('li');
+      accountListItem.innerText = account.owner + ": £" + account.amount.toFixed(2);
+      businessDisplay.appendChild(accountListItem);
+    }
+  }
+
+  //PERSONAL ----------------------------------------------------------------------
+  var personalTotalDisplay = document.getElementById('personal-total');
+  personalTotalDisplay.innerText = "personal Total: " + bank.totalCash('personal').toFixed(2);
+
+  var personalDisplay = document.getElementById('personal-accounts');
+  for (account of bank.accounts){
+    if (account.type === 'personal'){
+    var accountListItem = document.createElement('li');
+    accountListItem.innerText = account.owner + ": £" + account.amount.toFixed(2);
+    personalDisplay.appendChild(accountListItem);
+    }
+  }
+
 
 
 
