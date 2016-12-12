@@ -14,4 +14,19 @@ window.onload = function() {
 
 
   console.log("new bank", bank);
+
+  var totalDisplay = document.getElementById('total');
+  totalDisplay.innerText = "Total: " + bank.totalCash();
+
+  var accountList = document.getElementById('accounts');
+
+  for (account of bank.accounts){
+    var accountListItem = document.createElement('li');
+    accountListItem.innerText = account.owner + ": £" +account.amount;
+    accountList.appendChild(accountListItem);
+
+  }
+
+
+
 };
