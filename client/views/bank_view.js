@@ -1,11 +1,13 @@
 var Bank = require('../src/bank/bank.js');
 var Account = require('../src/bank/account.js');
 
+// BankView Constructor ----------------------------------------------------------
 var BankView = function(bank){
    this.bank = bank;
 }
 
 BankView.prototype = {
+  // Render the BankView Display -------------------------------------------------
 render: function(){
 
     var createItemForAccount = function(account) {
@@ -25,7 +27,6 @@ render: function(){
       personalDisplay.innerHTML = "";
     }
 
-
     var totalDisplay = document.getElementById('total');
     var businessTotalDisplay = document.getElementById('business-total');
     var personalTotalDisplay = document.getElementById('personal-total');
@@ -43,15 +44,12 @@ render: function(){
       
       resetDisplay();
       this.bank.addInterest(1.1);
-
       totalDisplay.innerText = "Total: " + this.bank.totalCash().toFixed(2);
       businessTotalDisplay.innerText = "Business Total: " + this.bank.totalCash('business').toFixed(2);
       personalTotalDisplay.innerText = "personal Total: " + this.bank.totalCash('personal').toFixed(2);
       populateAccountList(businessDisplay, this.bank.filteredAccounts('business'));
       populateAccountList(personalDisplay, this.bank.filteredAccounts('personal'));
       }.bind(this);
-
     }
-  
 }
 module.exports = BankView;
